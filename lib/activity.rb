@@ -28,8 +28,8 @@ class Activity
 
   def owed
     debt = {}
-    @participants.each do |participant|
-      debt[participant.first] = split - participant.last
+    @participants.each do |name, amount|
+      debt[name] = split - amount
     end
     debt
   end

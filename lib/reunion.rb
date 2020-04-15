@@ -18,16 +18,18 @@ class Reunion
     end
   end
 
-  # breakout` method, the key is a person's
-  # name and the value is what they owe for
-  # the whole reunion. This should be
-  # the combination of what they owe from all activities.
-
   def breakout
-    debt = {}
+    debt = Hash.new(0)
     @activities.each do |activity|
-      debt[@participants] = activity.owed
+      activity.owed.each do |name, cost|
+        debt[name] += cost
+      end
     end
-    debt.compact
+    debt
   end
+
+  def summary
+    breakout.collect { |k,v| "#{k}: #{v}" }.join("\n")
+  end
+
 end
